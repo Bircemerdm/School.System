@@ -1,0 +1,42 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using School.System.Localization
+@using School.System.Web.Menus
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Button
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Card
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Table
+@using Volo.Abp.AspNetCore.Mvc.UI.Bundling.TagHelpers
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@model School.System.Web.Pages.Roles.Guardians.IndexModel
+@inject IHtmlLocalizer<SystemResource> L
+@inject IPageLayout PageLayout
+@{
+    PageLayout.Content.Title = L["Guardians"].Value;
+    PageLayout.Content.MenuItemName = SystemMenus.Roles;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/Roles/Guardians/index.js" />
+}
+
+@section content_toolbar {
+    <abp-button id="NewGuardianButton" text="@L["NewGuardians"].Value" icon="plus" size="Small" button-type="Primary" />
+}
+
+<abp-card>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="GuardiansTable">
+            <thead>
+            <tr>
+                <th>@L["Actions"]</th>
+                <th>@L["GuardianIdentificationNumber"]</th>
+                <th>@L["GuardianName"]</th>
+                <th>@L["GuardianSurname"]</th>
+                <th>@L["GuardianPhone"]</th>
+                
+            </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>

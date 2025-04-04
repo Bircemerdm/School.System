@@ -1,0 +1,44 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using School.System.Localization
+@using School.System.Web.Menus
+@using Volo.Abp.AspNetCore.Mvc.UI.Bundling.TagHelpers
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@model School.System.Web.Pages.Roles.Students.IndexModel
+@inject IHtmlLocalizer<SystemResource> L
+@inject IPageLayout PageLayout
+@inject IAuthorizationService Authorization
+@{
+    PageLayout.Content.Title = L["Students"].Value;
+    PageLayout.Content.MenuItemName = SystemMenus.Roles;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/Roles/Students/index.js" />
+}
+@section content_toolbar {
+    <abp-button id="NewStudentButton" text="@L["NewStudent"].Value" icon="plus" size="Small" button-type="Primary" />
+}
+<abp-card>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="StudentsTable">
+            <thead>
+            <tr>
+                <th>@L["Actions"]</th>
+                <th>@L["StudentName"]</th>
+                <th>@L["StudentSurname"]</th>
+                <th>@L["StudentBirthday"]</th>
+                <th>@L["StudentPhone"]</th>
+                <th>@L["Class"]</th>
+                <th>@L["Brach"]</th>
+                <th>@L["SchoolFee" ]</th>
+                <th>@L["GuardianId" ]</th>
+                <th>@L["StudentIdentificationNumber" ]</th>
+            </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>
+

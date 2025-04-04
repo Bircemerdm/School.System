@@ -1,0 +1,14 @@
+{
+  "Culture": "en",
+  "Texts": {
+    "AppName": "System",
+    "Menu:Home": "Home",
+    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information visit",
+    "Welcome": "Welcome",
+    "Menu:SchoolSystems" : "School System",
+    "Menu:Roles": "Roles",
+    "Menu:Students": "Students",
+    "Menu:Teachers": "Teachers",
+    "Menu:Guardians": "Guardians"
+  }
+}

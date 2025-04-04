@@ -1,0 +1,105 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXLiteTheme": {
+      "version": "4.0.5",
+      "isInstalled": true
+    },
+    "Volo.Abp.Account": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.Identity": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "9.0.4",
+      "isInstalled": true
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "School.System.Application": {
+      "path": "src/School.System.Application/School.System.Application.abppkg",
+      "folder": "src"
+    },
+    "School.System.Application.Tests": {
+      "path": "test/School.System.Application.Tests/School.System.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "School.System.Domain.Shared": {
+      "path": "src/School.System.Domain.Shared/School.System.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "School.System.Application.Contracts": {
+      "path": "src/School.System.Application.Contracts/School.System.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "School.System.HttpApi": {
+      "path": "src/School.System.HttpApi/School.System.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "School.System.HttpApi.Client": {
+      "path": "src/School.System.HttpApi.Client/School.System.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "School.System.Web": {
+      "path": "src/School.System.Web/School.System.Web.abppkg",
+      "folder": "src"
+    },
+    "School.System.Web.Tests": {
+      "path": "test/School.System.Web.Tests/School.System.Web.Tests.abppkg",
+      "folder": "test"
+    },
+    "School.System.EntityFrameworkCore.Tests": {
+      "path": "test/School.System.EntityFrameworkCore.Tests/School.System.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "School.System.EntityFrameworkCore": {
+      "path": "src/School.System.EntityFrameworkCore/School.System.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "School.System.TestBase": {
+      "path": "test/School.System.TestBase/School.System.TestBase.abppkg",
+      "folder": "test"
+    },
+    "School.System.Domain.Tests": {
+      "path": "test/School.System.Domain.Tests/School.System.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "School.System.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/School.System.HttpApi.Client.ConsoleTestApp/School.System.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "School.System.DbMigrator": {
+      "path": "src/School.System.DbMigrator/School.System.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "School.System.Domain": {
+      "path": "src/School.System.Domain/School.System.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}

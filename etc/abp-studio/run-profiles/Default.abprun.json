@@ -1,0 +1,13 @@
+﻿{
+  "applications": {
+    "School.System.Web": {
+      "type": "dotnet-project",
+      "launchUrl": "https://localhost:44326",
+      "path": "../../../src/School.System.Web/School.System.Web.csproj",
+      "kubernetesService": ".*-web$",
+      "execution": {
+        "order": 2
+      }
+    }
+  }
+}
