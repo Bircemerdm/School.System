@@ -1,26 +1,47 @@
 ﻿ $(function() { 
     var l =abp.localization.getResource("System");
     var schoolService=window.school.system.roles.guardian;
-    
-    var dataTableColumns=[
-        {
-            rowAction:
-                {
-                    items:[{
-                     text: l("Delete"),
-                    confirmMessage: function () {
-                        return l("DeleteConfirmationMessage");
-                    },
-                    action: function (data) {
-                        schoolService.delete(data.record.id)
-                            .then(function () {
-                                abp.notify.success(l("SuccessfullyDeleted"));
-                                dataTable.ajax.reloadEx();
-                            });
-                    }
-                }
-    ]
-},
+
+     var createModal = new abp.ModalManager({
+         viewUrl: abp.appPath + "Roles/Guardians/CreateModal",
+         scriptUrl: abp.appPath + "Pages/Roles/Guardians/createModal.js",
+         modalClass: "guardianCreate"
+     });
+     
+     var editModal=new abp.ModalManager({
+         viewUrl: abp.appPath + "Roles/Guardians/EditModal",
+         scriptUrl: abp.appPath + "Pages/Roles/Guardians/editModal.js",
+         modalClass: "guardianEdit"
+     });
+
+     var dataTableColumns=[
+         {
+             rowAction:{
+                 items:[{
+                     text: l("Edit"),
+
+                     action: function (data) {
+                         debugger;
+                         editModal.open({
+                             id: data.record.id
+                         });
+                     }
+                 },
+                     {
+                         text:l("Delete"),
+                         confirmMessage: function () {
+                             return l("DeleteConfirmationMessage");
+                         },
+                         action: function (data) {
+                             schoolService.delete(data.record.id)
+                                 .then(function(){
+                                     abp.notify.success(l("SuccessfullyDeleted"));
+                                     dataTable.ajax.reloadEx();
+                                 });
+                         }
+                     }
+                 ]
+             },
     width: "1rem"
 },
 { data: "guardianIdentificationNumber" },
@@ -44,11 +65,18 @@ var dataTable = $("#GuardiansTable").DataTable(abp.libs.datatables.normalizeConf
     lengthMenu: [10, 25, 50, 100, 250, 500, 1000],
     pageLength: 50
 }));
+     createModal.onResult(function(){
+         dataTable.ajax.reloadEx();
+     });
+     editModal.onResult(function(){
+         dataTable.ajax.reloadEx();
+     });
 
-$("#NewStudentButton").click(function (e) {
+$("#NewGuardianButton").click(function (e) {
     e.preventDefault();
     createModal.open();
 });
  });
+
 
 

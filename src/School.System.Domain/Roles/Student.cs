@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using School.System.Tasks;
 using Volo.Abp.Domain.Entities.Auditing;
 
 namespace School.System.Roles;
@@ -6,7 +8,7 @@ namespace School.System.Roles;
 public class Student:FullAuditedAggregateRoot<Guid>
 {
     public Guid GuardianId { get; set; }
-    public int StudentIdentificationNumber{get;set;}
+    public string StudentIdentificationNumber{get;set;}
     
     public string StudentName{get;set;}
     public string StudentSurname{get;set;}
@@ -14,6 +16,9 @@ public class Student:FullAuditedAggregateRoot<Guid>
     public ClassType Class{get;set;}
     public string Brach{get;set;}
     public float SchoolFee{get;set;}
-    public int? StudentPhone{get;set;}
+    public string? StudentPhone{get;set;}
+    
+   
+
     
 }

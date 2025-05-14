@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using School.System.Documents;
 using School.System.Roles;
+using School.System.Tasks;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
@@ -46,6 +48,9 @@ public class SystemDbContext :
     public DbSet<Student> Students { get; set; }
     public DbSet<Teacher> Teachers { get; set; }
     public DbSet<Guardian> Guardians { get; set; }
+    public DbSet<Document> Documents { get; set; }
+    public DbSet<StudentTask> StudentTasks  { get; set; }
+    public DbSet<TaskDefinition> TaskDefinitions { get; set; }
     public DbSet<IdentityUser> Users { get; set; }
     public DbSet<IdentityRole> Roles { get; set; }
     public DbSet<IdentityClaimType> ClaimTypes { get; set; }
@@ -107,6 +112,7 @@ public class SystemDbContext :
             b.Property(x => x.StudentName).IsRequired().HasMaxLength(RoleConsts.MaxNameLength);
             b.HasIndex(x => x.StudentName);
             b.HasOne<Guardian>().WithMany().HasForeignKey(x => x.GuardianId).IsRequired();
+            
         });
         builder.Entity<Guardian>(b=>
         {
@@ -117,6 +123,47 @@ public class SystemDbContext :
             b.HasIndex(x => x.GuardianName);
             b.HasMany<Student>().WithOne().HasForeignKey(x=>x.GuardianId).IsRequired();
         });
-       
+        builder.Entity<Document>(b =>
+        {
+            b.ToTable(SystemConsts.DbTablePrefix + "Document", SystemConsts.DbSchema);
+            b.ConfigureByConvention();
+        });
+        builder.Entity<TaskDefinition>(b =>
+        {
+            b.ToTable(SystemConsts.DbTablePrefix + "TaskDefinitions", SystemConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.Title).IsRequired().HasMaxLength(100);
+            b.HasIndex(x => x.Title);
+            b.HasOne<Teacher>()
+                .WithMany()
+                .HasForeignKey(x => x.TeacherId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+        });
+        builder.Entity<StudentTask>(b =>
+        {
+            b.ToTable(SystemConsts.DbTablePrefix + "StudentTasks", SystemConsts.DbSchema);
+            b.ConfigureByConvention();
+            // TaskDefinition ilişkisi (bir görev, birçok öğrenci görevi olabilir)
+     
+            b.HasOne<TaskDefinition>()
+                .WithMany() 
+                .HasForeignKey(x => x.TaskDefinitionId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction); 
+
+            // Student ilişkisi (bir öğrenci, birçok görev alabilir)
+            b.HasOne<Student>()
+                .WithMany()
+                .HasForeignKey(x => x.StudentId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction); 
+
+            // Teacher ilişkisi (görevi atayan öğretmen)
+            b.HasOne<Teacher>()
+                .WithMany() 
+                .HasForeignKey(x => x.AssignedTeacherId)
+                .OnDelete(DeleteBehavior.NoAction); 
+        });
     }
 }

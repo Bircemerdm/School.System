@@ -43,6 +43,8 @@ using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Toolbars;
 using Volo.Abp.AspNetCore.Serilog;
+using Volo.Abp.BlobStoring;
+using Volo.Abp.BlobStoring.Minio;
 using Volo.Abp.Identity;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.OpenIddict;
@@ -64,7 +66,8 @@ namespace School.System.Web;
     typeof(AbpTenantManagementWebModule),
     typeof(AbpFeatureManagementWebModule),
     typeof(AbpSwashbuckleModule),
-    typeof(AbpAspNetCoreSerilogModule)
+    typeof(AbpAspNetCoreSerilogModule),
+    typeof(AbpBlobStoringMinioModule)
 )]
 public class SystemWebModule : AbpModule
 {
@@ -142,7 +145,19 @@ public class SystemWebModule : AbpModule
         ConfigureNavigationServices();
         ConfigureAutoApiControllers();
         ConfigureSwaggerServices(context.Services);
-
+        Configure<AbpBlobStoringOptions>(options =>
+        {
+            options.Containers.ConfigureDefault(container =>
+            {
+                container.UseMinio(minio =>
+                {
+                    minio.EndPoint = "localhost:9000"; // your minio endPoint
+                    minio.AccessKey = "CnbjzK4Bmey32fKKfiNm"; // your minio accessKey
+                    minio.SecretKey = "3ZGnCdp6LCAhijI4Hvn38uKBdlnCk9gJhvribQh2"; // your minio secretKey
+                    minio.BucketName = "school-student"; // your minio bucketName
+                });
+            });
+        });
         Configure<PermissionManagementOptions>(options =>
         {
             options.IsDynamicPermissionStoreEnabled = true;

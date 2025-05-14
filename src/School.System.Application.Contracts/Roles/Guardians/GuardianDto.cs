@@ -1,9 +1,12 @@
-﻿namespace School.System.Roles.Guardians;
+﻿using System;
+using Volo.Abp.Application.Dtos;
 
-public class GuardianDto
+namespace School.System.Roles.Guardians;
+
+public class GuardianDto:AuditedEntityDto<Guid>
 {
-    public int GuardianIdentificationNumber{get;set;}
+    public string GuardianIdentificationNumber{get;set;}
     public string GuardianName{get;set;}
     public string GuardianSurname{get;set;}
-    public int GuardianPhone{get;set;}
+    public string GuardianPhone{get;set;}
 }

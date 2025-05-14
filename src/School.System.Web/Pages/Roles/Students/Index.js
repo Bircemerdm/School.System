@@ -49,7 +49,7 @@ $(function(){
         { data: "studentPhone" },
         { data: "class" },
         { data: "brach" },
-        { data: "schoolFee" },
+        { data: function (row){return row.schoolFee+' '+"₺" }},
         { data: "guardianId" },
         { data: "studentIdentificationNumber" },
         

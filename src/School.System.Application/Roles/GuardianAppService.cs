@@ -6,7 +6,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace School.System.Roles;
 
-public class GuardianAppService:CrudAppService<Guardian,GuardianDto,Guid,  PagedAndSortedResultRequestDto, CreateUpdateGuardianDto>,Guardians.IGuardianAppService
+public class GuardianAppService:CrudAppService<Guardian,GuardianDto,Guid,  PagedAndSortedResultRequestDto, CreateUpdateGuardianDto>,IGuardianAppService
 {
     public GuardianAppService(IRepository<Guardian, Guid> repository)
         : base(repository)

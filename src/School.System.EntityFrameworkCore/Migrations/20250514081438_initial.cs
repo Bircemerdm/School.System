@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace School.System.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -428,6 +428,80 @@ namespace School.System.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AppDocument",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FileSize = table.Column<long>(type: "bigint", nullable: false),
+                    MimeType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FileUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppDocument", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppGuardians",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    GuardianIdentificationNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GuardianName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    GuardianSurname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GuardianPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppGuardians", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppTeachers",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TeacherIdentificationNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TeacherName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    TeacherSurname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    TeacherBirthday = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    TeacherPhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Salary = table.Column<float>(type: "real", nullable: true),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppTeachers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OpenIddictApplications",
                 columns: table => new
                 {
@@ -746,6 +820,70 @@ namespace School.System.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AppStudents",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    GuardianId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    StudentIdentificationNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StudentName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    StudentSurname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StudentBirthday = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Class = table.Column<int>(type: "int", nullable: false),
+                    Brach = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SchoolFee = table.Column<float>(type: "real", nullable: false),
+                    StudentPhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppStudents", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AppStudents_AppGuardians_GuardianId",
+                        column: x => x.GuardianId,
+                        principalTable: "AppGuardians",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppTaskDefinitions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TeacherId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppTaskDefinitions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AppTaskDefinitions_AppTeachers_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "AppTeachers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OpenIddictAuthorizations",
                 columns: table => new
                 {
@@ -791,6 +929,46 @@ namespace School.System.Migrations
                         principalTable: "AbpEntityChanges",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppStudentTasks",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TaskDefinitionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AssignedTeacherId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CompletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppStudentTasks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AppStudentTasks_AppStudents_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "AppStudents",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_AppStudentTasks_AppTaskDefinitions_TaskDefinitionId",
+                        column: x => x.TaskDefinitionId,
+                        principalTable: "AppTaskDefinitions",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_AppStudentTasks_AppTeachers_AssignedTeacherId",
+                        column: x => x.AssignedTeacherId,
+                        principalTable: "AppTeachers",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -1061,6 +1239,51 @@ namespace School.System.Migrations
                 column: "UserName");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AppGuardians_GuardianName",
+                table: "AppGuardians",
+                column: "GuardianName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppStudents_GuardianId",
+                table: "AppStudents",
+                column: "GuardianId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppStudents_StudentName",
+                table: "AppStudents",
+                column: "StudentName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppStudentTasks_AssignedTeacherId",
+                table: "AppStudentTasks",
+                column: "AssignedTeacherId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppStudentTasks_StudentId",
+                table: "AppStudentTasks",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppStudentTasks_TaskDefinitionId",
+                table: "AppStudentTasks",
+                column: "TaskDefinitionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppTaskDefinitions_TeacherId",
+                table: "AppTaskDefinitions",
+                column: "TeacherId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppTaskDefinitions_Title",
+                table: "AppTaskDefinitions",
+                column: "Title");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppTeachers_TeacherName",
+                table: "AppTeachers",
+                column: "TeacherName");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OpenIddictApplications_ClientId",
                 table: "OpenIddictApplications",
                 column: "ClientId");
@@ -1170,6 +1393,12 @@ namespace School.System.Migrations
                 name: "AbpUserTokens");
 
             migrationBuilder.DropTable(
+                name: "AppDocument");
+
+            migrationBuilder.DropTable(
+                name: "AppStudentTasks");
+
+            migrationBuilder.DropTable(
                 name: "OpenIddictScopes");
 
             migrationBuilder.DropTable(
@@ -1194,10 +1423,22 @@ namespace School.System.Migrations
                 name: "AbpUsers");
 
             migrationBuilder.DropTable(
+                name: "AppStudents");
+
+            migrationBuilder.DropTable(
+                name: "AppTaskDefinitions");
+
+            migrationBuilder.DropTable(
                 name: "OpenIddictAuthorizations");
 
             migrationBuilder.DropTable(
                 name: "AbpAuditLogs");
+
+            migrationBuilder.DropTable(
+                name: "AppGuardians");
+
+            migrationBuilder.DropTable(
+                name: "AppTeachers");
 
             migrationBuilder.DropTable(
                 name: "OpenIddictApplications");
