@@ -9,6 +9,15 @@
     "Menu:Roles": "Roles",
     "Menu:Students": "Students",
     "Menu:Teachers": "Teachers",
-    "Menu:Guardians": "Guardians"
+    "Menu:Guardians": "Guardians",
+    "Menu:Tasks": "Tasks",
+    "Menu:TaskDefinition": "TaskDefinition",
+    "Menu:StudentTask": "StudentTask",
+    "StudentName": "Student Name",
+    "StudentSurname": "Student Surname",
+    "StudentBirthday": "Student Birthday",
+    "StudentIdentificationNumber": "Student Identification Number",
+    "StudentPhone": "Student Phone",
+    "SchoolFee": "School Fee"
   }
 }

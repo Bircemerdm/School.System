@@ -1,0 +1,38 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using School.System.Localization
+@using School.System.Web.Menus
+@using Volo.Abp.AspNetCore.Mvc.UI.Bundling.TagHelpers
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@model School.System.Web.Pages.Tasks.TaskDefinition.IndexModel
+@inject IHtmlLocalizer<SystemResource> L
+@inject IPageLayout PageLayout
+
+@{
+    PageLayout.Content.Title = L["TaskDefiniton"].Value;
+    PageLayout.Content.MenuItemName = SystemMenus.Tasks;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/Tasks/TaskDefinition/index.js" />
+}
+@section content_toolbar {
+    <abp-button id="NewTaskDefinitionButton" text="@L["NewTaskButton"].Value" icon="plus" size="Small" button-type="Primary" />
+}
+<abp-card>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="TaskDefinitionsTable">
+            <thead>
+            <tr>
+                <th>@L["Actions"]</th>
+                <th>@L["Title" ]</th>
+                <th>@L["Description"]</th>
+                <th>@L["DueDate"]</th>
+                
+
+            </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>

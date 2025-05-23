@@ -14,10 +14,7 @@ public class CreateUpdateTaskDefinitionDto
     public string Description { get; set; }= string.Empty;
     
     [Required]
-    public DateTime CreationDate { get; set; }=DateTime.Now;
-    
-    [Required]
-    public DateTime AssignedDate { get; set; }=DateTime.Now;
+    public DateTime DueDate { get; set; }=DateTime.Now;
     
     
     public Guid TeacherId { get; set; }

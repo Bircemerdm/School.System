@@ -2,7 +2,7 @@
 
 public enum ClassType
 {
-  mezun,
+  Gradiation,
   BirinciSınıf,
   İkinciSınıf,
   ÜçüncüSınıf,

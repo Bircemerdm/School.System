@@ -151,10 +151,10 @@ public class SystemWebModule : AbpModule
             {
                 container.UseMinio(minio =>
                 {
-                    minio.EndPoint = "localhost:9000"; // your minio endPoint
-                    minio.AccessKey = "CnbjzK4Bmey32fKKfiNm"; // your minio accessKey
-                    minio.SecretKey = "3ZGnCdp6LCAhijI4Hvn38uKBdlnCk9gJhvribQh2"; // your minio secretKey
-                    minio.BucketName = "school-student"; // your minio bucketName
+                    minio.EndPoint = "localhost:9000"; 
+                    minio.AccessKey = "CnbjzK4Bmey32fKKfiNm"; 
+                    minio.SecretKey = "3ZGnCdp6LCAhijI4Hvn38uKBdlnCk9gJhvribQh2"; 
+                    minio.BucketName = "school-student"; 
                 });
             });
         });

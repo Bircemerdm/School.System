@@ -7,4 +7,6 @@ public class SystemMenus
     public const string Home = Prefix + ".Home";
     
     public const string Roles= Prefix + ".Roles";
+    
+    public const string Tasks =Prefix + ".Tasks";
 }

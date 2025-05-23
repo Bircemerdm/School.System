@@ -9,7 +9,7 @@ public class TaskDefinitionDto:AuditedEntityDto<Guid>
     public string Title { get; set; }
     public string Description { get; set; }
     
-    public DateTime CreationDate { get; set; }
-    public DateTime AssignedDate { get; set; }
+    public DateTime DueDate { get; set; }
+ 
     public Guid TeacherId { get; set; }
 }

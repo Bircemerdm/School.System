@@ -64,7 +64,25 @@ public class SystemMenuContributor : IMenuContributor
                             icon: "fa fa-user", 
                             url:"/Roles/Guardians"))
                 )
-            );
+                .AddItem(
+                new ApplicationMenuItem(
+                    "SchoolSystems.Tasks",
+                    l["Menu:Tasks"],
+                    icon: "fa fa-tasks",
+                    url: "/Tasks") 
+                    .AddItem(new ApplicationMenuItem(
+                        "SchoolSystems.Roles.TaskDefinition", 
+                        l["Menu:TaskDefinition"], 
+                        icon: "fa fa-tasks", 
+                        url:"/Tasks/TaskDefinition"))
+                    .AddItem( 
+                        new ApplicationMenuItem(
+                            "SchoolSystems.Roles.Guardians", 
+                            l["Menu:StudentTask"], 
+                            icon: "fa fa-check-circle-o", 
+                            url:"/Tasks/StudentTask"))
+                )
+                );
         
 
 

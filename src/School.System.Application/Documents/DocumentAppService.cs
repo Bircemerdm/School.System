@@ -28,7 +28,7 @@ public async Task<List<DocumentDto>> Upload([FromForm] List<IFormFile> files)
         await file.CopyToAsync(memoryStream).ConfigureAwait(false);
 
         var id = Guid.NewGuid();
-        var fileUrl = $"/api/app/document/{id}"; // Dosya erişim endpoint'in
+        var fileUrl = $"/api/app/document/{id}"; 
 
         var newFile = new Document(id, file.Length, file.ContentType, fileUrl);
 
@@ -36,7 +36,7 @@ public async Task<List<DocumentDto>> Upload([FromForm] List<IFormFile> files)
         await _blobContainer.SaveAsync(id.ToString(), memoryStream.ToArray(), overrideExisting: true);
 
         var dto = ObjectMapper.Map<Document, DocumentDto>(newFile);
-        dto.FileUrl = fileUrl; // (Opsiyonel) DTO'ya tekrar set edebilirsin
+        dto.FileUrl = fileUrl; 
         output.Add(dto);
     }
 

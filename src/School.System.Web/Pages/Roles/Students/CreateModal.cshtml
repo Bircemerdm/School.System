@@ -15,15 +15,15 @@
     <abp-modal id="StudentCreateModal">
         <abp-modal-header title="@L["NewStudent"].Value"></abp-modal-header>
         <abp-modal-body>
-            <abp-input asp-for="Student.StudentName" />
-            <abp-input asp-for="Student.StudentSurname" />
-            <abp-date-picker asp-for="Student.StudentBirthday" />
-            <abp-input asp-for="Student.GuardianId" />
-            <abp-input asp-for="Student.StudentIdentificationNumber" />
+            <abp-input asp-for="Student.StudentName" label="@L["StudentName"].Value" />
+            <abp-input asp-for="Student.StudentSurname" label="@L["StudentSurname"].Value" />
+            <abp-date-picker asp-for="Student.StudentBirthday" label="@L["StudentBirthday"].Value"/>
+            
+            <abp-input asp-for="Student.StudentIdentificationNumber" label="@L["StudentIdentificationNumber"].Value"/>
             <abp-select asp-for="Student.Class"/>
             <abp-input asp-for="Student.Brach"/>
-            <abp-input asp-for="Student.StudentPhone"/>
-            <abp-input asp-for="Student.SchoolFee"/>
+            <abp-input asp-for="Student.StudentPhone" label="@L["StudentPhone"].Value"/>
+            <abp-input asp-for="Student.SchoolFee" label="@L["SchoolFee"].Value"/>
             
         </abp-modal-body>
         <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)">
